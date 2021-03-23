@@ -1,0 +1,34 @@
+{
+    "application": {
+        "id": "",
+        "title": "com.evonik.mdm.vendor.cbv.bankdetails.bankDetails",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#bankDetails-Display",
+        "navigationComponentName": "com.evonik.mdm.vendor.cbv.bankdetails",
+        "intentSemanticObject": "bankDetails",
+        "intentAction": "Display",
+        "html5ApplicationName": "bankdetails",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "d67cc67c-ec40-4ac7-ac0d-e4beaa01c6e9"
+        ],
+        "contentPackages": [
+            "d73e1962-381f-4503-b678-5347135713fb"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Title",
+        "subtitle": "Subtitle",
+        "searchKeywords": "Title,Subtitle",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

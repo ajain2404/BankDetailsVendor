@@ -1,0 +1,43 @@
+{
+	"fileName": "id_1612626360401_155_propertyChange",
+	"fileType": "change",
+	"changeType": "propertyChange",
+	"moduleName": "",
+	"reference": "com.evonik.mdm.vendor.cbv.bankdetails.Component",
+	"packageName": "$TMP",
+	"content": {
+		"property": "icon",
+		"newValue": "sap-icon://e-learning"
+	},
+	"selector": {
+		"id": "com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--action::idGuideButton",
+		"type": "sap.uxap.ObjectPageHeaderActionButton",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/com.evonik.mdm.vendor.cbv.bankdetails/changes/",
+	"projectId": "com.evonik.mdm.vendor.cbv.bankdetails",
+	"creation": "2021-02-06T15:46:36.485Z",
+	"originalLanguage": "EN",
+	"conditions": {},
+	"context": "",
+	"support": {
+		"generator": "Change.createInitialFileContent",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.71.3",
+		"sourceChangeFileName": "",
+		"compositeCommand": ""
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"validAppVersions": {
+		"creation": "1.0.0",
+		"from": "1.0.0",
+		"to": "1.0.0"
+	},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}

@@ -1,0 +1,89 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core" 
+	xmlns:smart="sap.ui.comp.smartform" 
+	xmlns:field="sap.ui.comp.smartfield"
+	xmlns:l="sap.ui.layout" 
+	xmlns:layout="sap.ui.layout" 
+	xmlns:u="sap.ui.unified"
+>
+	<Dialog 
+		id="idCreateDialog" 
+		title="{i18n>CreateDialogTitle}" 
+		contentWidth="80%" 
+		stretch="false" 
+		afterClose="dialogAfterclose"
+	>
+		<VBox alignItems="End" width="99%">
+			<Button 
+				id="idQuestionMArk" 
+				press="handleBankButtonPress" 
+				icon="sap-icon://official-service" 
+				class="sapUiTinyMargin"
+			/>
+		</VBox>
+		<smart:SmartForm id="idCreateForm" editable="true" entityType="ZMD_CBV_SRV.ZC_BankDetailsType">
+			<smart:Group useHorizontalLayout="true">
+				<smart:GroupElement>
+					<field:SmartField id="idBankKey" value="{to_Items/bankl}"/>
+				</smart:GroupElement>
+				<smart:GroupElement>
+					<field:SmartField id="idBankCountry" value="{to_Items/banks}"/>
+				</smart:GroupElement>
+				<smart:GroupElement>
+					<field:SmartField id="idBankAcc" value="{to_Items/bankn}"/>
+				</smart:GroupElement>
+				<smart:GroupElement>
+					<field:SmartField id="idBankTyp" value="{to_Items/bvtyp}"/>
+				</smart:GroupElement>
+			</smart:Group>
+			<smart:Group>
+				<smart:GroupElement>
+					<field:SmartField id="idIBAN" value="{to_Items/iban}"/>
+				</smart:GroupElement>
+				<smart:GroupElement>
+					<field:SmartField id="idContrKey" value="{to_Items/bkont}"/>
+				</smart:GroupElement>
+				<smart:GroupElement>
+					<field:SmartField id="idRef" value="{to_Items/bkref}"/>
+				</smart:GroupElement>
+				<smart:GroupElement>
+					<field:SmartField id="idAccHold" value="{to_Items/koinh}"/>
+				</smart:GroupElement>
+				<smart:GroupElement>
+					<field:SmartField id="idDebAuth" value="{to_Items/xezer}"/>
+				</smart:GroupElement>
+			</smart:Group>
+		</smart:SmartForm>
+		<HBox width="48%" direction="Row" id="vbox0" alignItems="Center" fitContainer="true" renderType="Bare" class="sapUiSmallMarginBegin">
+			<VBox width="35%" alignItems="End" renderType="Bare">
+				<Label text="Attachment:" id="AttachmentLabel" class="sapUiTinyMarginEnd"/>
+			</VBox>
+			<HBox width="70%" renderType="Bare">
+				<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+					uploadComplete="handleUploadComplete"/>
+				<Button text="Upload File" id="buttonUploader" press="handleUploadPress"/>
+			</HBox>
+		</HBox>
+		<HBox width="40%" direction="Column" alignItems="Start" id="xxx" justifyContent="Start" fitContainer="true" class="sapUiSmallMarginBegin"
+			renderType="Bare"></HBox>
+		<HBox width="78%" direction="Column" id="vbox10" alignItems="Center" fitContainer="true" renderType="Bare" class="sapUiSmallMarginBegin">
+			<HBox width="60%" id="VboxContent" direction="Column" fitContainer="true" renderType="Bare"></HBox>
+		</HBox>
+		<OverflowToolbar></OverflowToolbar>
+		<Bar >
+			<contentRight fitContainer="true">
+				<Button id="idCreateSave" text="{i18n>CreateSaveButton}" press="onSaveBank" class="sapUiTinyMarginBegin" type="Accept"/>
+				<Button id="idSaveBankCBV" text="{i18n>CreateSaveButton}" press="onSaveBankCBV" class="sapUiTinyMarginBegin" type="Accept"/>
+				<Button id="idSaveBankSPEND" text="{i18n>CreateSaveButton}" press="onSaveBankSPEND" class="sapUiTinyMarginBegin" type="Accept"/>
+				<Button id="idSaveBankGreen" text="{i18n>CreateSaveButton}" press="saveBankGreen" class="sapUiTinyMarginBegin" type="Accept"/>
+				<Button id="idSaveBankRed" text="{i18n>CreateSaveButton}" press="saveBankRed" class="sapUiTinyMarginBegin" type="Accept"/>
+				<Button id="idSaveBankYellow" text="{i18n>CreateSaveButton}" press="saveBankYellow" class="sapUiTinyMarginBegin" type="Accept"/>
+				<Button id="idCreateCancel" text="{i18n>CreateCancelButton}" press="onCancelBank" class="sapUiTinyMarginBegin" type="Reject"/>
+			</contentRight>
+		</Bar>
+		<!--	<beginButton>
+			<Button id="idCreateSave" text="{i18n>CreateSaveButton}" press="onSaveBank" type="Accept"/>
+		</beginButton>-->
+	</Dialog>
+</core:FragmentDefinition>

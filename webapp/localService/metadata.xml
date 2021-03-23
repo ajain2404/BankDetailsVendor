@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference
+		Uri="https://d20wd100.ds.server.dom:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='R1_CLNT011')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZMD_CBV_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="ZC_BankDetailsType" sap:label="Bank Details" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="lifnr"/>
+					<PropertyRef Name="banks"/>
+					<PropertyRef Name="bankl"/>
+					<PropertyRef Name="bankn"/>
+					<PropertyRef Name="bkont"/>
+					<PropertyRef Name="iban"/>
+				</Key>
+				<Property Name="lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Vendor"
+					sap:creatable="false" sap:updatable="false"/>
+				<Property Name="koinh" Type="Edm.String" MaxLength="60" sap:label="Account holder"/>
+				<Property Name="ebpp_accname" Type="Edm.String" MaxLength="40" sap:label="Account Name"/>
+				<Property Name="ebpp_bvstatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status Bk Details BD"/>
+				<Property Name="kovon" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid from"/>
+				<Property Name="kobis" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Eff.to"/>
+				<Property Name="Ibank" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Bank Country"/>
+				<Property Name="Ibankl" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Bank Key"/>
+				<Property Name="Ibankn" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Bank Account"/>
+				<Property Name="Ibkont" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Bank control key"/>
+				<Property Name="valid_from" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="IBAN valid from"/>
+				<Property Name="banks" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Bank Country"/>
+				<Property Name="ernam" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by"/>
+				<Property Name="erdat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created on"/>
+				<Property Name="tabname" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Table Name" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="tabkey" Type="Edm.String" MaxLength="24" sap:display-format="UpperCase" sap:label="Key to origin" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="bankl" Type="Edm.String" Nullable="false" MaxLength="15" sap:display-format="UpperCase" sap:label="Bank Key"
+					sap:value-list="standard"/>
+				<Property Name="bankn" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Bank Account"
+					sap:value-list="standard"/>
+				<Property Name="bkont" Type="Edm.String" Nullable="true" MaxLength="2" sap:display-format="UpperCase" sap:label="Bank control key"/>
+				<Property Name="iban" Type="Edm.String" Nullable="true" MaxLength="34" sap:display-format="UpperCase" sap:label="IBAN"/>
+				<Property Name="bvtyp" Nullable="false" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Part.bank type"/>
+				<Property Name="xezer" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Collect.author."/>
+				<Property Name="bkref" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Reference details"/>
+				<NavigationProperty Name="to_BankMD" Relationship="ZMD_CBV_SRV.assoc_D041DC6A7F532F9E7AC89E4D1883F653"
+					FromRole="FromRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653" ToRole="ToRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653"/>
+				<NavigationProperty Name="to_BankSH" Relationship="ZMD_CBV_SRV.assoc_6494A35189457C17EFCF815CFB1A8D39"
+					FromRole="FromRole_assoc_6494A35189457C17EFCF815CFB1A8D39" ToRole="ToRole_assoc_6494A35189457C17EFCF815CFB1A8D39"/></EntityType>
+			<EntityType Name="ZI_BANK_SHType" sap:label="Bank Value Help" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="bankl"/>
+				</Key>
+				<Property Name="bankl" Type="Edm.String" Nullable="false" MaxLength="15" sap:display-format="UpperCase" sap:label="Bank Key"/>
+			</EntityType>
+			<EntityType Name="ZI_VENDOR_SHType" sap:label="Vendors Value Help" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Vendor"/>
+				</Key>
+				<Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Vendor"/>
+				<Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country"/>
+				<Property Name="Description" Type="Edm.String" MaxLength="35" sap:label="Name"/>
+				<Property Name="City" Type="Edm.String" MaxLength="35" sap:label="City"/>
+				<Property Name="District" Type="Edm.String" MaxLength="35" sap:label="District"/>
+				<Property Name="Street" Type="Edm.String" MaxLength="35" sap:label="Street"/>
+			</EntityType>
+			<EntityType Name="ZC_BNKA_QVType" sap:label="Quick View" sap:content-version="1">
+				<Key><PropertyRef Name="banks"/>
+				</Key>
+				<Property Name="banks" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Bank Country"/>
+				<Property Name="bankl" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Bank Key"/>
+				<Property Name="banka" Type="Edm.String" MaxLength="60" sap:label="Bank name"/>
+				<Property Name="ort01" Type="Edm.String" MaxLength="35" sap:label="City"/>
+				<Property Name="bnklz" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Bank number"/>
+				<Property Name="swift" Type="Edm.String" MaxLength="11" sap:display-format="UpperCase" sap:label="SWIFT/BIC"/>
+				<Property Name="brnch" Type="Edm.String" MaxLength="40" sap:label="Bank Branch"/>
+				<Property Name="stras" Type="Edm.String" MaxLength="35" sap:label="Street"/>
+			</EntityType>
+			<EntityType Name="ZC_VendorDetailsType" sap:label="Vendor details" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="lifnr"/>
+				</Key>
+				<Property Name="lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Vendor"
+					sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+				<Property Name="name1" Type="Edm.String" MaxLength="35" sap:label="Name" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="name2" Type="Edm.String" MaxLength="35" sap:label="Name 2" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="land1" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="ort01" Type="Edm.String" MaxLength="35" sap:label="City" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="stras" Type="Edm.String" MaxLength="35" sap:label="Street" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="pstlz" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Postal Code" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="sortl" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Search term" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="ktokk" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:filter-restriction="single-value"
+					sap:required-in-filter="false" sap:label="Account group" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="lnrza" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Alternative payee" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="dtams" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="DME indicator" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="dtaws" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Instruction key" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="esrnr" Type="Edm.String" MaxLength="11" sap:display-format="UpperCase" sap:label="PBC/POR number" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="xzemp" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Payee in document" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="xlfza" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Accts for alt. payee" sap:creatable="false"
+					sap:updatable="false"/>
+				<NavigationProperty Name="to_Items" Relationship="ZMD_CBV_SRV.assoc_BD415F8D3306C3897D55CF18D660EEBA"
+					FromRole="FromRole_assoc_BD415F8D3306C3897D55CF18D660EEBA" ToRole="ToRole_assoc_BD415F8D3306C3897D55CF18D660EEBA"/>
+				<NavigationProperty Name="to_VendorSH" Relationship="ZMD_CBV_SRV.assoc_D37F2302E870F72B461B979E5CB2E50C"
+					FromRole="FromRole_assoc_D37F2302E870F72B461B979E5CB2E50C" ToRole="ToRole_assoc_D37F2302E870F72B461B979E5CB2E50C"/>
+			</EntityType>
+			<Association Name="assoc_BD415F8D3306C3897D55CF18D660EEBA" sap:content-version="1">
+				<End Type="ZMD_CBV_SRV.ZC_VendorDetailsType" Multiplicity="1" Role="FromRole_assoc_BD415F8D3306C3897D55CF18D660EEBA"/>
+				<End Type="ZMD_CBV_SRV.ZC_BankDetailsType" Multiplicity="*" Role="ToRole_assoc_BD415F8D3306C3897D55CF18D660EEBA"/>
+			</Association>
+			<Association Name="assoc_D37F2302E870F72B461B979E5CB2E50C" sap:content-version="1">
+				<End Type="ZMD_CBV_SRV.ZC_VendorDetailsType" Multiplicity="1" Role="FromRole_assoc_D37F2302E870F72B461B979E5CB2E50C"/>
+				<End Type="ZMD_CBV_SRV.ZI_VENDOR_SHType" Multiplicity="0..1" Role="ToRole_assoc_D37F2302E870F72B461B979E5CB2E50C"/>
+			</Association>
+			<Association Name="assoc_6494A35189457C17EFCF815CFB1A8D39" sap:content-version="1">
+				<End Type="ZMD_CBV_SRV.ZC_BankDetailsType" Multiplicity="1" Role="FromRole_assoc_6494A35189457C17EFCF815CFB1A8D39"/>
+				<End Type="ZMD_CBV_SRV.ZI_BANK_SHType" Multiplicity="0..1" Role="ToRole_assoc_6494A35189457C17EFCF815CFB1A8D39"/>
+			</Association>
+			<Association Name="assoc_D041DC6A7F532F9E7AC89E4D1883F653" sap:content-version="1">
+				<End Type="ZMD_CBV_SRV.ZC_BankDetailsType" Multiplicity="1" Role="FromRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653"/>
+				<End Type="ZMD_CBV_SRV.ZC_BNKA_QVType" Multiplicity="0..1" Role="ToRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653">
+						<PropertyRef Name="bankl"/>
+					</Principal>
+					<Dependent Role="FromRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653">
+						<PropertyRef Name="bankl"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZMD_CBV_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="ZC_BankDetails" EntityType="ZMD_CBV_SRV.ZC_BankDetailsType" sap:content-version="1"/>
+				<EntitySet Name="ZI_BANK_SH" EntityType="ZMD_CBV_SRV.ZI_BANK_SHType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="ZI_VENDOR_SH" EntityType="ZMD_CBV_SRV.ZI_VENDOR_SHType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="ZC_BNKA_QV" EntityType="ZMD_CBV_SRV.ZC_BNKA_QVType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:content-version="1"/>
+				<EntitySet Name="ZC_VendorDetails" EntityType="ZMD_CBV_SRV.ZC_VendorDetailsType" sap:creatable="false" sap:deletable="false"
+					sap:searchable="true" sap:requires-filter="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_6494A35189457C17EFCF815CFB1A8D39" Association="ZMD_CBV_SRV.assoc_6494A35189457C17EFCF815CFB1A8D39"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZC_BankDetails" Role="FromRole_assoc_6494A35189457C17EFCF815CFB1A8D39"/><End EntitySet="ZI_BANK_SH" Role="ToRole_assoc_6494A35189457C17EFCF815CFB1A8D39"/></AssociationSet>
+				<AssociationSet Name="assoc_D041DC6A7F532F9E7AC89E4D1883F653" Association="ZMD_CBV_SRV.assoc_D041DC6A7F532F9E7AC89E4D1883F653"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZC_BankDetails" Role="FromRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653"/><End EntitySet="ZC_BNKA_QV" Role="ToRole_assoc_D041DC6A7F532F9E7AC89E4D1883F653"/></AssociationSet>
+				<AssociationSet Name="assoc_BD415F8D3306C3897D55CF18D660EEBA" Association="ZMD_CBV_SRV.assoc_BD415F8D3306C3897D55CF18D660EEBA"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZC_VendorDetails" Role="FromRole_assoc_BD415F8D3306C3897D55CF18D660EEBA"/><End EntitySet="ZC_BankDetails" Role="ToRole_assoc_BD415F8D3306C3897D55CF18D660EEBA"/></AssociationSet>
+				<AssociationSet Name="assoc_D37F2302E870F72B461B979E5CB2E50C" Association="ZMD_CBV_SRV.assoc_D37F2302E870F72B461B979E5CB2E50C"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZC_VendorDetails" Role="FromRole_assoc_D37F2302E870F72B461B979E5CB2E50C"/><End EntitySet="ZI_VENDOR_SH" Role="ToRole_assoc_D37F2302E870F72B461B979E5CB2E50C"/></AssociationSet>
+			</EntityContainer>
+			<Annotations Target="ZMD_CBV_SRV.ZC_BankDetailsType/bankl" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.SemanticObject" String="bankl"/>
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Bank Value Help"/>
+						<PropertyValue Property="CollectionPath" String="ZI_BANK_SH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="bankl"/>
+									<PropertyValue Property="ValueListProperty" String="bankl"/>
+									</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZMD_CBV_SRV.ZC_BankDetailsType/bankn" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Quick View"/><PropertyValue Property="CollectionPath" String="ZC_BNKA_QV"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="bankl"/><PropertyValue Property="ValueListProperty" String="bankl"/></Record>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="banks"/><PropertyValue Property="ValueListProperty" String="banks"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZMD_CBV_SRV.ZC_VendorDetailsType/lifnr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Vendors Value Help"/><PropertyValue Property="CollectionPath" String="ZI_VENDOR_SH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="lifnr"/><PropertyValue Property="ValueListProperty" String="Vendor"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Country"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Description"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="City"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="District"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Street"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZMD_CBV_SRV.ZC_BankDetailsType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>lifnr</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZMD_CBV_SRV.ZC_VendorDetailsType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>lifnr</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations><atom:link rel="self" href="https://d20wd100.ds.server.dom:443/sap/opu/odata/sap/ZMD_CBV_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="https://d20wd100.ds.server.dom:443/sap/opu/odata/sap/ZMD_CBV_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

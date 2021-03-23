@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		title="Help Links"
+		placement="Bottom"
+		initialFocus="Exit">
+		<footer>
+				<ToolbarSpacer />
+				<Button
+				type="Default"
+					id="Exit"
+					text="Exit"
+					press="onExit" 
+					class="sapUiSmallMarginBegin"
+					/>
+
+		</footer>
+						<HBox width="70%" direction="Column"  id="VboxContent2" alignItems="Center" fitContainer="true" renderType="Bare" class="sapUiSmallMarginBegin"  >
+
+		</HBox>	
+	</Popover>
+</core:FragmentDefinition>

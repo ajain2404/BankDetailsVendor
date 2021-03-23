@@ -1,0 +1,43 @@
+{
+	"fileName": "id_1600859931888_132_propertyChange",
+	"fileType": "change",
+	"changeType": "propertyChange",
+	"moduleName": "",
+	"reference": "com.evonik.mdm.vendor.cbv.bankdetails.Component",
+	"packageName": "$TMP",
+	"content": {
+		"property": "icon",
+		"newValue": "sap-icon://sys-help"
+	},
+	"selector": {
+		"id": "com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--action::ActionZC_VendorDetailsHeader1button",
+		"type": "sap.uxap.ObjectPageHeaderActionButton",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/com.evonik.mdm.vendor.cbv.bankdetails/changes/",
+	"projectId": "com.evonik.mdm.vendor.cbv.bankdetails",
+	"creation": "2020-09-23T11:20:56.473Z",
+	"originalLanguage": "DE",
+	"conditions": {},
+	"context": "",
+	"support": {
+		"generator": "Change.createInitialFileContent",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.71.3",
+		"sourceChangeFileName": "",
+		"compositeCommand": ""
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"validAppVersions": {
+		"creation": "1.0.0",
+		"from": "1.0.0",
+		"to": "1.0.0"
+	},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}
