@@ -1,0 +1,33 @@
+# Trigger on development or master automatically
+trigger:
+- development
+- master
+
+steps:
+- task: Application security testing@2020
+  inputs:
+    CheckmarxService: 'Checkmarx-SCP'
+    projectName: 'mdm.vendor.bankdetails.manage-$(Build.SourceBranchName)'
+    preset: 'Webapp_Frontend'
+    fullTeamName: 'CxServer\SP\Evonik\SAP'
+    incScan: true
+    syncMode: false
+    comment: 'CxSast Scan'
+    folderExclusion: 'pipelines, test, i18n, localService'
+    fileExtension: '!**/*.md, !**/*.txt, !**/*.gitignore, !**/*.json'
+  displayName: 'checkmarx scan'
+
+  
+- task: Application security testing@2020
+  inputs:
+    enableSastScan: false
+    enableDependencyScan: true
+    dependencyServerURL: 'CheckmarxSCA-SCP'
+    dependencyTenant: 'Evonik'
+    projectName: 'mdm.vendor.bankdetails.manage-$(Build.SourceBranchName)'
+    fullTeamName: 'CxServer\SP\Evonik\SAP'
+    dependencyWebAppURL: 'https://eu.sca.checkmarx.net'
+    dependencyAccessControlURL: 'https://eu.platform.checkmarx.net'
+    incScan: true
+    syncMode: false
+  displayName: 'checkmarx sca scan'
