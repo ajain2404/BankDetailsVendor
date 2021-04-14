@@ -1,52 +1,18 @@
-<core:View 
-	controllerName="com.evonik.mdm.vendor.cbv.bankdetails.ext.controller.Attachments"
-	xmlns:core="sap.ui.core"
-	xmlns="sap.m"
->
-
-	<UploadCollection 
-		id="idUploadCollection"
-		multiple="true"
-		beforeUploadStarts=".handleUploadCollectionBeforeUploadStarts"
+<core:View controllerName="com.evonik.mdm.vendor.cbv.bankdetails.ext.controller.Attachments" xmlns:core="sap.ui.core" xmlns="sap.m">
+	<UploadCollection id="idUploadCollection" multiple="true" beforeUploadStarts=".handleUploadCollectionBeforeUploadStarts"
 		uploadComplete=".handleUploadCollectionUploadComplete"
-		items="{to_AttachList}"
-	>
+		items="{path: 'to_AttachList', sorter:[{path: 'CreatedOn', descending: 'true'}, {path: 'CreatedAt', descending: 'true'}]}">
 		<items>
-			<UploadCollectionItem
-				visibleEdit="false"
-				visibleDelete="false"
-				documentId="{FileID}"
-				fileName="{FileNameF}"
-				mimeType="{MimeType}"
-				url="{
-					parts: [
-						{ path: 'Lifnr' },
-						{ path: 'FileID' },
-						{ path: 'AttachType' },
-						{ path: 'ArcRepID' },
-						{ path: 'ArcDocType' }
-					],
-					formatter: '.generateDownloadUrl'
-				}"
-			>
+			<UploadCollectionItem visibleEdit="false" visibleDelete="false" documentId="{FileID}" fileName="{FileNameF}" mimeType="{MimeType}"
+				url="{ parts: [ { path: 'Lifnr' }, { path: 'FileID' }, { path: 'AttachType' }, { path: 'ArcRepID' }, { path: 'ArcDocType' } ], formatter: '.generateDownloadUrl' }">
 				<attributes>
-					<ObjectAttribute
-						title="{i18n>ObjectPage.Attachments.UploadCollection.Item.Attribute.UploadedBy.Title}"
-						text="{UserName}"
-					/>
-					<ObjectAttribute
-						title="{i18n>ObjectPage.Attachments.UploadCollection.Item.Attribute.UploadedOn.Title}"
-						text="{
-							path: 'CreatedOn',
-							type: 'sap.ui.model.type.Date',
-							formatOptions: {
-								style: 'medium'
-							}
-						}"
-					/>
+					<ObjectAttribute title="{i18n>ObjectPage.Attachments.UploadCollection.Item.Attribute.UploadedBy.Title}" text="{UserName}"/>
+					<ObjectAttribute title="{i18n>ObjectPage.Attachments.UploadCollection.Item.Attribute.UploadedOn.Title}"
+						text="{ path: 'CreatedOn', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+					<ObjectAttribute title="{i18n>ObjectPage.Attachments.UploadCollection.Item.Attribute.UploadedAt.Title}"
+						text="{ path: 'CreatedAt', type: 'sap.ui.model.odata.type.Time', formatOptions: { pattern : 'HH:mm:ss' } }"/>
 				</attributes>
 			</UploadCollectionItem>
 		</items>
 	</UploadCollection>
-
 </core:View>

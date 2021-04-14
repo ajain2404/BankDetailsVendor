@@ -3,8 +3,14 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/m/MessageToast",
 	"sap/m/MessageStrip",
-	"sap/ui/model/json/JSONModel"
-], function (Fragment, MessageBox, MessageToast, MessageStrip, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/m/Dialog",
+	"sap/m/DialogType",
+	"sap/m/Button",
+	"sap/m/ButtonType",
+	"sap/m/Text",
+	"sap/ui/core/ValueState"
+], function (Fragment, MessageBox, MessageToast, MessageStrip, JSONModel, Dialog, DialogType, Button, ButtonType, Text, ValueState) {
 	"use strict";
 
 	return sap.ui.controller("com.evonik.mdm.vendor.cbv.bankdetails.ext.controller.ObjectPageExt", {
@@ -21,12 +27,60 @@ sap.ui.define([
 
 			this.extensionAPI.attachPageDataLoaded(this.handlePageDataLoaded.bind(this));
 			this.fetchHelpLinks();
+
+			// This will ensure that view context is loaded and Stndard buttons can be accessed
+			this.getOwnerComponent().getModel().attachRequestCompleted(function () {
+
+			}, this);
 		},
 
 		handlePageDataLoaded: function (oEvent) {
 			this.getOwnerComponent().getEventBus().publish("ObjectPage", "vendorChanged", {
 				VendorDetailsPath: oEvent.context.sPath
 			});
+			this.authorizationCheck();
+		},
+
+		authorizationCheck: function () {
+			//Authority Check Logic
+			var oModel = this.getOwnerComponent().getModel();
+			var sUrl = "/AuthorizationCheckSet";
+			oModel.read(sUrl, {
+				async: false,
+				success: function (oData, controller) {
+					sap.ui.core.BusyIndicator.hide();
+					var sResult = oData.results[0];
+					if (sResult.Editable === false) {
+						sap.ui.getCore().byId(
+							"com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--idAddBankButton"
+						).setVisible(false);
+						sap.ui.getCore().byId(
+							"com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--idAddBankButton"
+						).setEnabled(false);
+						sap.ui.getCore().byId(
+							"com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--to_Items::com.sap.vocabularies.UI.v1.LineItem::Table"
+						).getTable().setMode("None");
+						sap.ui.getCore().byId("__xmlview0--idUploadCollection").setUploadEnabled(false);
+
+						MessageBox.error(this.getView().getModel("i18n").getResourceBundle().getText("Message.AuthorizationError"));
+					} else {
+						sap.ui.getCore().byId(
+							"com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--idAddBankButton"
+						).setVisible(true);
+						sap.ui.getCore().byId(
+							"com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--idAddBankButton"
+						).setEnabled(true);
+						sap.ui.getCore().byId(
+							"com.evonik.mdm.vendor.cbv.bankdetails::sap.suite.ui.generic.template.ObjectPage.view.Details::ZC_VendorDetails--to_Items::com.sap.vocabularies.UI.v1.LineItem::Table"
+						).getTable().setMode("SingleSelectLeft");
+						sap.ui.getCore().byId("__xmlview0--idUploadCollection").setUploadEnabled(true);
+					}
+				}.bind(this),
+				error: function (oError) {
+					sap.ui.core.BusyIndicator.hide();
+				}
+			});
+			//End of Authority Check Logic
 		},
 
 		fetchHelpLinks: function () {
@@ -58,7 +112,7 @@ sap.ui.define([
 		},
 
 		onAfterRendering: function (oEvent) {
-
+			return;
 			/*		var oList = oEvent.getSource(),
 					bSelected = oEvent.getParameter("selected");*
 			/*
@@ -216,8 +270,8 @@ sap.ui.define([
 				}
 
 				this.getView().getModel().create("/ZC_BankDetails", oPayload, {
-					success: jQuery.proxy(this._handlePostSuccess, this),
-					error: jQuery.proxy(this._handleOdataError, this)
+					success: this._handlePostSuccess.bind(this),
+					error: this._handleOdataError.bind(this)
 				});
 			} else {
 				that.oGlobalBusyDialog.close();

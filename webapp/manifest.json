@@ -159,6 +159,9 @@
 								}
 							}
 						}
+					},
+					"sap.suite.ui.generic.template.ListReport.view.ListReport": {
+						"controllerName": "com.evonik.mdm.vendor.cbv.bankdetails.ext.controller.ListReportExt"
 					}
 				},
 				"sap.ui.viewExtensions": {
@@ -199,7 +202,10 @@
 					"list": true,
 					"settings": {
 						"smartVariantManagement": true,
-						"condensedTableLayout": true
+						"condensedTableLayout": true,
+						"dataLoadSettings": {
+							"loadDataOnAppLaunch": "never"
+						}
 					}
 				},
 				"pages": {
