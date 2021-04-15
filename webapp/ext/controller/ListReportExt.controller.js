@@ -20,60 +20,22 @@ sap.ui.define([
 				var oViewModel = new JSONModel();
 				this.getView().setModel(oViewModel, "local");
 
-				var oModel = this.getOwnerComponent().getModel();
-				var sUrl = "/AuthorizationCheckSet";
-				oModel.read(sUrl, {
-						async: false,
-						success: function (oData, controller) {
-							sap.ui.core.BusyIndicator.hide();
-							var sResult = oData.results[0];
-							if (sResult.Editable === true) {
-								this.Model.setAuthority();
-							}
-						}.bind(this),
-					error: function (oError) {
-						sap.ui.core.BusyIndicator.hide();
-					}
-				});
-			//End of Authority Check Logic
-
-			// this.getOwnerComponent().getModel().metadataLoaded().then(function () {
-			// 	this.authorizationVerification();
-			// }.bind(this));
-
-			// this.extensionAPI.rebindTable(this.handleRebindTable.bind(this));
-			// this.authorizationVerification();
-		},
-
-		// onBeforeRebindTableExtension: function () {
-		// 	this.authorizationVerification();
-		// },
-
-		// handleRebindTable: function (oEvent) {
-		// 	this.authorizationVerification();
-		// },
-
-		authorizationVerification: function () {
-			if (!this.oPreInfoMessageDialog) {
-				this.oPreInfoMessageDialog = new Dialog({
-					type: DialogType.Message,
-					title: "No Authorizarion",
-					state: ValueState.Error,
-					content: new Text({
-						text: "Authorization error simulation"
-					}),
-					endButton: new Button({
-						type: ButtonType.Default,
-						text: "Close",
-						press: function () {
-							this.oPreInfoMessageDialog.close();
-							this.onNavBack();
-						}.bind(this)
-					})
-				});
-			}
-
-			this.oPreInfoMessageDialog.open();
+			// 	var oModel = this.getOwnerComponent().getModel();
+			// 	var sUrl = "/AuthorizationCheckSet";
+			// 	oModel.read(sUrl, {
+			// 			async: false,
+			// 			success: function (oData, controller) {
+			// 				sap.ui.core.BusyIndicator.hide();
+			// 				var sResult = oData.results[0];
+			// 				if (sResult.Editable === false) {
+			// 					MessageBox.error(this.getView().getModel("i18n").getResourceBundle().getText("Message.AuthorizationError"));
+			// 				}
+			// 			}.bind(this),
+			// 		error: function (oError) {
+			// 			sap.ui.core.BusyIndicator.hide();
+			// 		}
+			// 	});
+			// //End of Authority Check Logic
 		},
 
 		onNavBack: function () {
